@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Factories\" />
-    <Folder Include="Decorators\" />
-    <Folder Include="Logger\" />
-    <Folder Include="Strategies\" />
-  </ItemGroup>
-
 </Project>
