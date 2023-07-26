@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APIExercise.Core.Services
+namespace APIExercise.Core.Interfaces.Repositories
 {
-    internal class AccountService
+    internal interface ITransactionRepository
     {
     }
 }

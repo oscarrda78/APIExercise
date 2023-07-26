@@ -1,9 +1,13 @@
-﻿namespace APIExercise.Core.Entities.Enums
+﻿using System.ComponentModel;
+
+namespace APIExercise.Core.Entities.Enums
 {
     [Flags]
     public enum Status
     {
-        False = 0,
-        True = 1
+        [Description("False")]
+        Inactive = 1,
+        [Description("True")]
+        Active = 2
     }
 }
