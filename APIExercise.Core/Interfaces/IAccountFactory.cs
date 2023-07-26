@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using APIExercise.Core.Entities;
+using APIExercise.Core.Entities.Enums;
 
 namespace APIExercise.Core.Interfaces
 {
-    internal interface IAccountFactory
+    public interface IAccountFactory
     {
+        Account CreateAccount(string accountNumber, decimal initialBalance, AccountType type, int clientId);
     }
 }
