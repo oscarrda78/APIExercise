@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using APIExercise.Core.DTOs;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System.Net;
-using System.Net.Http;
-using APIExercise.API;
 using System.Text;
-using Newtonsoft.Json;
-using APIExercise.Core.DTOs;
-using APIExercise.Core.Entities;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace APIExercise.Tests.IntegrationTests
 {
