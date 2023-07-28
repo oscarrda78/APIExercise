@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIExercise.Core.Entities
 {
-    public class Account
+    public class Account :  IBaseEntity
     {
         [Key]
         public Guid Id { get; set; }
@@ -21,6 +21,10 @@ namespace APIExercise.Core.Entities
         [Required(ErrorMessage = "El saldo inicial es obligatorio.")]
         [Range(0, double.MaxValue, ErrorMessage = "El saldo inicial no puede ser negativo.")]
         public decimal InitialBalance { get; set; }
+
+        [Required(ErrorMessage = "El saldo es obligatorio.")]
+        [Range(0, double.MaxValue, ErrorMessage = "El saldo no puede ser negativo.")]
+        public decimal Balance { get; set; }
 
         [Required(ErrorMessage = "El estado de la cuenta es obligatorio.")]
         [EnumDataType(typeof(Status), ErrorMessage = "Estado inválido.")]

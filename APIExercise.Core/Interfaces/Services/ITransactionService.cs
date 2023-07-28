@@ -9,5 +9,6 @@ namespace APIExercise.Core.Interfaces.Services
         Task<TransactionReadDto> GetByIdAsync(Guid id);
 
         Task<TransactionReadDto> AddAsync(TransactionCreateDto transactionDto);
+
     }
 }

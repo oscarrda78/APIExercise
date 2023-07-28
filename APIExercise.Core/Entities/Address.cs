@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIExercise.Core.Entities
 {
-    public class Address
+    public class Address : IBaseEntity
     {
         [Key]
         [ForeignKey(nameof(Person))]

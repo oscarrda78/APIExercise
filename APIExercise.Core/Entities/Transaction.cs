@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIExercise.Core.Entities
 {
-    public class Transaction
+    public class Transaction : IBaseEntity
     {
         [Key]
         public Guid Id { get; set; }

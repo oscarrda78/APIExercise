@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using APIExercise.Core.Entities;
 
 namespace APIExercise.Core.Interfaces.Repositories
 {
-    internal interface ITransactionRepository
+    public interface ITransactionRepository : IRepositoryBase<Transaction>
     {
+        Task<decimal> GetDailyOutcomeAsync(Guid accountId, DateTime date);
+        Task<IEnumerable<Transaction>> GetTransactionsForAccountByDateAsync(Guid accountId, DateTime startDate, DateTime endDate);
+
     }
 }

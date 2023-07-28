@@ -1,6 +1,7 @@
 ﻿using APIExercise.Core.DTOs;
 using APIExercise.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace APIExercise.API.Controllers
 {
@@ -53,7 +54,18 @@ namespace APIExercise.API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                var errors = ModelState
+                        .Where(x => x.Value!.Errors.Count > 0)
+                        .ToDictionary(k => k.Key, v => v.Value!.Errors.Select(e => e.ErrorMessage).ToArray());
+
+                var errorResponse = new
+                {
+                    statusCode = (int)HttpStatusCode.BadRequest,
+                    mensaje = "Datos de entrada inválidos.",
+                    errores = errors
+                };
+
+                return BadRequest(errorResponse);
             }
 
             try
@@ -73,7 +85,18 @@ namespace APIExercise.API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                var errors = ModelState
+                        .Where(x => x.Value!.Errors.Count > 0)
+                        .ToDictionary(k => k.Key, v => v.Value!.Errors.Select(e => e.ErrorMessage).ToArray());
+
+                var errorResponse = new
+                {
+                    statusCode = (int)HttpStatusCode.BadRequest,
+                    mensaje = "Datos de entrada inválidos.",
+                    errores = errors
+                };
+
+                return BadRequest(errorResponse);
             }
 
             try

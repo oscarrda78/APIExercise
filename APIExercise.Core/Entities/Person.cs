@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIExercise.Core.Entities
 {
-    public class Person
+    public class Person : IBaseEntity
     {
         [Key]
         public Guid Id { get; set; }

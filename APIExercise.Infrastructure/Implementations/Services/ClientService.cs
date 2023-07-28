@@ -3,6 +3,7 @@ using APIExercise.Core.Entities;
 using APIExercise.Core.Interfaces.Repositories;
 using APIExercise.Core.Interfaces.Services;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIExercise.Infrastructure.Implementations.Services
 {
@@ -38,9 +39,12 @@ namespace APIExercise.Infrastructure.Implementations.Services
 
         public async Task<bool> UpdateAsync(Guid id, ClientUpdateDto clientDto)
         {
-            var client = await _clientRepository.GetByIdAsync(id);
+            var client = await _clientRepository.GetByIdAsync(id, include: source => source.Include(c => c.Address));
             if (client == null) return false;
+            if (string.IsNullOrEmpty(clientDto.StatusDescription)) 
+                clientDto.Status = client.Status;
 
+            _mapper.Map(clientDto.Address, client.Address);
             _mapper.Map(clientDto, client);
             return await _clientRepository.UpdateAsync(client);
         }

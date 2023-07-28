@@ -1,7 +1,9 @@
 ﻿using APIExercise.Core.DTOs;
 using APIExercise.Core.Entities;
+using APIExercise.Core.Entities.Enums;
 using APIExercise.Core.Interfaces.Repositories;
 using APIExercise.Core.Interfaces.Services;
+using APIExercise.Core.Utilities;
 using AutoMapper;
 
 namespace APIExercise.Infrastructure.Implementations.Services
@@ -39,6 +41,8 @@ namespace APIExercise.Infrastructure.Implementations.Services
         public async Task<bool> UpdateAsync(Guid id, AccountUpdateDto accountDto)
         {
             var existingAccount = await _accountRepository.GetByIdAsync(id);
+            if (string.IsNullOrEmpty(accountDto.StatusDescription))
+                accountDto.Status = existingAccount.Status;
             _mapper.Map(accountDto, existingAccount);
             return await _accountRepository.UpdateAsync(existingAccount);
         }

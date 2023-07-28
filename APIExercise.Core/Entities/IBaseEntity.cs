@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APIExercise.Infrastructure.Logger
+namespace APIExercise.Core.Entities
 {
-    internal class Logger
+    public interface IBaseEntity
     {
+        Guid Id { get; set; }
     }
 }

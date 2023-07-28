@@ -7,8 +7,14 @@ namespace APIExercise.Infrastructure.Implementations.Repositories
 {
     public class AccountRepository : RepositoryBase<Account>, IAccountRepository
     {
+
         public AccountRepository(AppDbContext context) : base(context)
         {
         }
+        public async Task<IEnumerable<Account>> GetAccountsByClientIdAsync(Guid clientId)
+        {
+            return await _dbSet.Where(a => a.ClientId == clientId).ToListAsync();
+        }
+
     }
 }

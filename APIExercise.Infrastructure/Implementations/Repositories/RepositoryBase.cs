@@ -1,10 +1,12 @@
-﻿using APIExercise.Core.Interfaces.Repositories;
+﻿using APIExercise.Core.Entities;
+using APIExercise.Core.Interfaces.Repositories;
 using APIExercise.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace APIExercise.Infrastructure.Implementations.Repositories
 {
-    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public class RepositoryBase<T> : IRepositoryBase<T> where T : class, IBaseEntity
     {
         protected readonly AppDbContext _context;
         protected readonly DbSet<T> _dbSet;
@@ -40,6 +42,17 @@ namespace APIExercise.Infrastructure.Implementations.Repositories
         public async Task<T> GetByIdAsync(Guid id)
         {
             return await _dbSet.FindAsync(id);
+        }
+        public async Task<T> GetByIdAsync(Guid id, Func<IQueryable<T>, IIncludableQueryable<T, IBaseEntity>>? include = null)
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            return await query.SingleOrDefaultAsync(e => e.Id.Equals(id));
         }
 
         public async Task<bool> UpdateAsync(T entity)
